@@ -9,6 +9,9 @@ import { SystemAddComponent } from './system-add/system-add.component';
 import { SystemEditComponent } from './system-edit/system-edit.component';
 import { SystemSearchComponent } from './system-search/system-search.component';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +23,9 @@ import { SystemSearchComponent } from './system-search/system-search.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
