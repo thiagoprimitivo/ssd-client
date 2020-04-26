@@ -6,7 +6,7 @@
         <div class="form-group row">
           <label for="description" class="col-sm-4 col-form-label">Descrição</label>
           <div class="col-sm-8">
-            <input type="text" [(ngModel)]="system.description" id="description" name="description" #description="ngModel" required class="form-control form-control-sm" [ngClass]="{ 'is-invalid': f.submitted && description.invalid }" placeholder="Digite a descrição">
+            <input type="text" [(ngModel)]="system.description" id="description" name="description" #description="ngModel" maxlength="100" required class="form-control form-control-sm" [ngClass]="{ 'is-invalid': f.submitted && description.invalid }" placeholder="Digite a descrição">
             <div *ngIf="f.submitted && description.invalid" class="invalid-feedback">
               <div *ngIf="description.errors.required">Descrição é obrigatória</div>
             </div>
@@ -15,7 +15,7 @@
         <div class="form-group row">
           <label for="acronyms" class="col-sm-4 col-form-label">Sigla</label>
           <div class="col-sm-8">
-            <input type="text" [(ngModel)]="system.acronyms" id="acronyms" name="acronyms" #acronyms="ngModel" required class="form-control form-control-sm" [ngClass]="{ 'is-invalid': f.submitted && acronyms.invalid }" placeholder="Digite a sigla">
+            <input type="text" [(ngModel)]="system.acronyms" id="acronyms" name="acronyms" #acronyms="ngModel" maxlength="10" required class="form-control form-control-sm" [ngClass]="{ 'is-invalid': f.submitted && acronyms.invalid }" placeholder="Digite a sigla">
             <div *ngIf="f.submitted && acronyms.invalid" class="invalid-feedback">
                 <div *ngIf="acronyms.errors.required">Sigla é obrigatória</div>
             </div>
@@ -24,13 +24,16 @@
         <div class="form-group row">
           <label for="email" class="col-sm-4 col-form-label">E-mail de atendimento do sistema</label>
           <div class="col-sm-8">
-            <input type="email" [(ngModel)]="system.email" id="email" name="email" #email="ngModel" class="form-control form-control-sm" placeholder="Digite o e-mail de atendimento">
+            <input type="email" [(ngModel)]="system.email" id="email" name="email" #email="ngModel" maxlength="100" [email]="true" [ngClass]="{ 'is-invalid': f.submitted && email.invalid }" class="form-control form-control-sm" placeholder="Digite o e-mail de atendimento">
+            <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
+              <div>E-mail informado incorretamente</div>
+            </div>
           </div>
         </div>
         <div class="form-group row">
           <label for="url" class="col-sm-4 col-form-label">URL</label>
           <div class="col-sm-8">
-            <input type="text" [(ngModel)]="system.url" id="url" name="url" #url="ngModel" class="form-control form-control-sm" placeholder="Digite o URL">
+            <input type="text" [(ngModel)]="system.url" id="url" name="url" #url="ngModel" maxlength="50" class="form-control form-control-sm" placeholder="Digite o URL">
           </div>
         </div>
         <div class="form-group row">
@@ -45,16 +48,25 @@
         <div class="form-group row">
           <label for="responsible_user" class="col-sm-4 col-form-label">Usuário responsável pela última alteração</label>
           <div class="col-sm-8">
-            <input type="text" [(ngModel)]="system.responsible_user" id="responsible_user" name="responsible_user" #responsible_user="ngModel" class="form-control form-control-sm" placeholder="Digite o usuário">
+            <input type="text" [(ngModel)]="system.responsible_user" id="responsible_user" name="responsible_user" #responsible_user="ngModel" class="form-control form-control-sm" placeholder="Digite o usuário" readonly>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="updated_at" class="col-sm-4 col-form-label">Data da última alteração</label>
+          <div class="col-sm-8">
+            <input type="text" [(ngModel)]="system.updated_at" id="updated_at" name="updated_at" #updated_at="ngModel" class="form-control form-control-sm" placeholder="Não há alteração" readonly>
           </div>
         </div>
         <div class="form-group">
           <label for="last_justificative">Justificativa da última alteração</label>
-          <textarea [(ngModel)]="system.last_justificative" id="last_justificative" name="last_justificative" #last_justificative="ngModel" class="form-control form-control-sm" rows="3"></textarea>
+          <textarea [(ngModel)]="system.last_justificative" id="last_justificative" name="last_justificative" #last_justificative="ngModel" class="form-control form-control-sm" rows="3" readonly></textarea>
         </div>
         <div class="form-group">
           <label for="new_justificative">Nova justificativa de alteração</label>
-          <textarea [(ngModel)]="system.new_justificative" id="new_justificative" name="new_justificative" #new_justificative="ngModel" class="form-control form-control-sm" rows="3"></textarea>
+          <textarea [(ngModel)]="system.new_justificative" id="new_justificative" name="new_justificative" #new_justificative="ngModel" class="form-control form-control-sm" rows="3" required [ngClass]="{ 'is-invalid': f.submitted && new_justificative.invalid }" maxlength="500"></textarea>
+          <div *ngIf="f.submitted && new_justificative.invalid" class="invalid-feedback">
+            <div>Nova justificativa é obrigatória</div>
+          </div>
         </div>
         <div class="d-flex bd-highlight">
           <div class="p-2 flex-grow-1 bd-highlight">
