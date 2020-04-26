@@ -52,6 +52,14 @@ export class SystemService {
       )
   }
 
+  searchSystems(system: System): Observable<System[]> {
+    return this.httpClient.post<System[]>(this.url + '/search', JSON.stringify(system), this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+  }
+
   // Manipulação de erros
   handleError(error: HttpErrorResponse) {
     let errorMessage = '';

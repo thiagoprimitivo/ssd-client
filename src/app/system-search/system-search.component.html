@@ -3,7 +3,7 @@
   <div class="card search-system">
     <h5 class="card-header">Pesquisar sistema</h5>
     <div class="card-body">
-        <form id="search-form" (ngSubmit)="f.form.valid && searchSystem(f)" #f="ngForm" novalidate>
+        <form id="search-form" (ngSubmit)="f.form.valid && searchSystems(f)" #f="ngForm" novalidate>
           <div class="form-group row">
               <label for="description" class="col-sm-4 col-form-label">Descrição</label>
               <div class="col-sm-8">
@@ -47,7 +47,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let system of systems">
+            <tr *ngFor="let system of systems | paginate: { itemsPerPage: 50, currentPage: p }">
               <td>{{system.id}}</td>
               <td>{{system.description}}</td>
               <td>{{system.acronyms}}</td>
@@ -60,7 +60,17 @@
             </tr>
           </tbody>
         </table>
-    </div>
+      </div>
+      <div class="d-flex justify-content-center">
+        <pagination-controls (pageChange)="p = $event"
+          previousLabel="Anterior"
+          nextLabel="Próxima"
+          screenReaderPaginationLabel="Paginação"
+          screenReaderPageLabel="página"
+          screenReaderCurrentLabel="Você está na página"
+          class="pagination pagination-sm">
+        </pagination-controls>
+      </div>
   </div>
 </div>
 
